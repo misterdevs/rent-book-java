@@ -28,6 +28,7 @@ public abstract class BookForLoan extends Book {
         this.stock = stock;
     }
 
+    @Override
     public String toString() {
         String string = "[" + getId() + "," + getTitle() + "," + getAuthor()
                 + "," + getStock() + "," + getPrice() + "," + getLoanPrice() + "]";

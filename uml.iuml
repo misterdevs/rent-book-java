@@ -1,0 +1,113 @@
+@startuml
+scale 3
+
+abstract class Book{
+        -id: string
+        -title: string
+        -author: string
+        -price: int
+        +string getId()
+        +string getTitle()
+        +string getAuthor()
+        +string getPrice()
+        +void setId()
+        +void setTitle()
+        +void setAuthor()
+        +void setPrice()
+        +string toString()
+        
+}
+abstract class BookForLoan{
+    -loanprice: int
+    -stock: int
+    +string getLoanPrice()
+    +string getStock()
+    +void setLoanPrice()
+    +void setStock()
+    +string toString()
+    abstract calculateLoanPrice()
+}
+class Comic{
+    -genre: string
+    +string getGenre()
+    +void setGenre()
+    +void calculateLoanPrice()
+    +string toString()
+}
+class Novel{
+    -series: boolean
+    +boolean getSeries()
+    +void setSeries()
+    +void calculateLoanPrice()
+    +string toString()
+
+}
+
+class Order{
+    -id: string
+    -member: Member
+    -book: BookForLoan
+    -duration: int
+    -fee: int
+    -loanPrice: int
+    -orderList: List<Order>
+    +string getId()
+    +Member getMember()
+    +BookForLoan getBook()
+    +int getDuration()
+    +int getFee()
+    +int getLoanPrice()
+    +List<Order> getOrderList()
+    +void setId()
+    +void setMember()
+    +void setBook()
+    +void setDuration()
+    +void setFee()
+    +void setLoanPrice()
+    +void setOrderList()
+    +string toString()
+    +void calculateFee()
+    
+}
+class ServiceOrder{
+    -bookForLoan List<BookForLoan>
+    -idPattern: string
+    -orderNumber: int
+    +void loanOrder()
+    +void loanReturn()
+    +void createLoanOrder()
+    +void deleteLoanOrder()
+    +Member getMemberById()
+    +string getBookTypeById()
+    +BookForLoan getBookById()
+    +Order getOrderById()
+    +boolean isValidMemberId()
+    +boolean isValidBookId()
+    +boolean isValidOrderId()
+    +string createId()
+    +void calculateLoanPrice()
+    
+}
+class Member{
+    -id: string
+    -name: string
+    -address: string
+    +string getId()
+    +string getName()
+    +string getAddress()
+    +void setId()
+    +void setName()
+    +void setAddress()
+    +string toString()
+}
+
+interface IMenuAction{
+    +void printHeader()
+    +void printBody()
+}
+
+Book <|-- BookForLoan
+BookForLoan <|-- Comic
+BookForLoan <|-- Novel
+Order <|-- ServiceOrder
+@enduml
